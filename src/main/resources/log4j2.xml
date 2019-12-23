@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <Property name="basePath">$${sys:logFolder}</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="tweetLogger" fileName="${basePath}/twitter.out" filePattern="${basePath}/twitter-%d{yyyyMMdd}-%i.out.gz">
+            <PatternLayout>
+                <pattern>%m</pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB" />
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+        </RollingFile>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout   pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="twitterOut" level="info" additivity="false">
+            <appender-ref ref="tweetLogger" level="info" />
+        </Logger>
+        <Logger name="com.twitter.hbc" level="info">
+            <appender-ref ref="console" />
+        </Logger>
+        <Root level="info" additivity="true">
+            <appender-ref ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>
