@@ -1,6 +1,6 @@
 ![](https://github.com/maxinec/twitter_file_backup/workflows/Java%20CI/badge.svg)
  
-# twitter_file_backup
+# Twitter File Backup
 Twitter File Backup stores the output of /statuses/filter.json to file, with an option to upload the files to S3.
 
 ### Build instructions
